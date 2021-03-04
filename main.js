@@ -34,11 +34,16 @@ function getType(pokemon){
             name: data.name, 
             type: data.types.map(element => element.type.name)   
           }    
-        console.log(`${pokemonObj.name}: ${pokemonObj.type.join(' and ')} type`) //Charazard: fire , flying type)
+          return pokemonObj
         })
-
+        .then(result=>output(result))
+        .catch(err=>console.log(`ERROR: ${pokemon} is not a valid pokemon`))
 }
- 
+
+function output(pokemon){
+    console.log(`${pokemon.name}: ${pokemon.type.join(' and ')} type`) //Charazard: fire and flying type)
+    return
+}
 
 const filename = "./Files/input.txt"
 const promise1 = getNames(filename)
